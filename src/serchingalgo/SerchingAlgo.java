@@ -11,11 +11,15 @@ package serchingalgo;
  */
 public class SerchingAlgo {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public boolean jumpSearch(int[] arr){
+        // do the algo
+        return true;
     }
-    
+
+
+    public boolean binarySearch(int[] arr){
+        // do the algo
+        return true;
+    }
+
 }
