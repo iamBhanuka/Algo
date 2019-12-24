@@ -6,6 +6,7 @@ import java.util.Random;
  *
  * @author bhanuka
  */
+
 public class Home extends javax.swing.JFrame {
 
 
@@ -179,6 +180,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         jButton2.setText("ok");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         viewarry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,6 +317,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewarryActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -377,3 +387,120 @@ public class Home extends javax.swing.JFrame {
 
 }
 
+class LinearSearchExample{    
+public static int linearSearch(int[] arr, int key){    
+        for(int i=0;i<arr.length;i++){    
+            if(arr[i] == key){    
+                return i;    
+            }    
+        }    
+        return -1;    
+    }  
+}
+
+
+class BinarySearchExample{  
+ public static void binarySearch(int arr[], int first, int last, int key){  
+   int mid = (first + last)/2;  
+   while( first <= last ){  
+      if ( arr[mid] < key ){  
+        first = mid + 1;     
+      }else if ( arr[mid] == key ){  
+        System.out.println("Element is found at index: " + mid);  
+        break;  
+      }else{  
+         last = mid - 1;  
+      }  
+      mid = (first + last)/2;  
+   }  
+   if ( first > last ){  
+      System.out.println("Element is not found!");  
+   }  
+ }
+
+
+class Test 
+{ 
+    // Array of items on which search will 
+    // be conducted. 
+   
+      
+    // If x is present in arr[0..n-1], then returns 
+    // index of it, else returns -1. 
+    static int interpolationSearch(int x) 
+    { 
+        // Find indexes of two corners 
+        int lo = 0, hi = (arr.length - 1); 
+       
+        // Since array is sorted, an element present 
+        // in array must be in range defined by corner 
+        while (lo <= hi && x >= arr[lo] && x <= arr[hi]) 
+        {         
+  
+            if (lo == hi) 
+            { 
+                if (arr[lo] == x) return lo; 
+                return -1; 
+            } 
+         
+            // Probing the position with keeping 
+            // uniform distribution in mind. 
+              
+            int pos = lo + (((hi-lo) / 
+                  (arr[hi]-arr[lo]))*(x - arr[lo])); 
+       
+            // Condition of target found 
+            if (arr[pos] == x) 
+                return pos; 
+       
+            // If x is larger, x is in upper part 
+            if (arr[pos] < x) 
+                lo = pos + 1; 
+       
+            // If x is smaller, x is in the lower part 
+            else
+                hi = pos - 1; 
+        } 
+        return -1; 
+    }
+}
+
+
+class JumpSearch 
+{ 
+    public static int jumpSearch(int[] arr, int x) 
+    { 
+        int n = arr.length; 
+  
+        // Finding block size to be jumped 
+        int step = (int)Math.floor(Math.sqrt(n)); 
+  
+        // Finding the block where element is 
+        // present (if it is present) 
+        int prev = 0; 
+        while (arr[Math.min(step, n)-1] < x) 
+        { 
+            prev = step; 
+            step += (int)Math.floor(Math.sqrt(n)); 
+            if (prev >= n) 
+                return -1; 
+        } 
+  
+        // Doing a linear search for x in block 
+        // beginning with prev. 
+        while (arr[prev] < x) 
+        { 
+            prev++; 
+  
+            // If we reached next block or end of 
+            // array, element is not present. 
+            if (prev == Math.min(step, n)) 
+                return -1; 
+        } 
+  
+        // If element is found 
+        if (arr[prev] == x) 
+            return prev; 
+  
+        return -1; 
+    }
