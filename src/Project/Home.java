@@ -291,7 +291,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_arraySizeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int a = Integer.parseInt(arraySize.getText());
+        int a = 0;
+        try {
+            a = Integer.parseInt(arraySize.getText());
+
+        } catch (NumberFormatException e) {
+        }
         Random rd = new Random();
         arr = new int[a];
         for (int i = 0; i < arr.length; i++) {
@@ -316,15 +321,26 @@ public class Home extends javax.swing.JFrame {
         if (arr == null) {
             JOptionPane.showMessageDialog(this, "Initialize the array first!", "error", JOptionPane.ERROR_MESSAGE);
         } else {
-            long startTime = System.currentTimeMillis();
-            boolean isAvailable = serchingAlgo.binarySearch(arr);
-            long endTime = System.currentTimeMillis();
 
-            if (isAvailable) {
-                JOptionPane.showMessageDialog(this, "number available! took time: " + String.valueOf(endTime - startTime), "available", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "number not available! took time: " + String.valueOf(endTime - startTime), "available", JOptionPane.INFORMATION_MESSAGE);
+            int searchingNumber = -1;
+            try {
+                searchingNumber = Integer.parseInt(number.getText());
+            } catch (NumberFormatException e) {
             }
+
+            // binary search
+            long startTime = System.currentTimeMillis();
+            int place = serchingAlgo.binarySearch(arr, 0, arr.length - 1, searchingNumber);
+            long endTime = System.currentTimeMillis();
+            jTextField3.setText(String.valueOf(endTime - startTime));
+            // end of binary search
+
+            if (place != -1) {
+                JOptionPane.showMessageDialog(this, "number available at: " + String.valueOf(place + 1) + " !", "available", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "number not available!", "available", JOptionPane.INFORMATION_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
