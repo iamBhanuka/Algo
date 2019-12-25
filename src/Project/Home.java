@@ -230,6 +230,8 @@ public class Home extends javax.swing.JFrame {
 
         viewarry.setColumns(20);
         viewarry.setRows(5);
+        viewarry.setEditable(false);
+        viewarry.setFocusable(false);
         jScrollPane1.setViewportView(viewarry);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -346,7 +348,7 @@ public class Home extends javax.swing.JFrame {
 
         for (int i = 0; i < arr.length; i++) {
             sortedS += String.valueOf(arr[i]);
-            if (i != arr.length - 1) sortedS += ", ";
+            if (i != arr.length - 1) sortedS += ",\n";
         }
         viewarry.setText(sortedS);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -378,7 +380,7 @@ public class Home extends javax.swing.JFrame {
             
             
            long startTime2 = System.currentTimeMillis();
-           int w = serchingAlgo.interpolationSearch(arr,arr.length - 1,searchingNumber);
+           int w = serchingAlgo.interpolationSearch(arr,arr.length,searchingNumber);
            long endTime2 = System.currentTimeMillis();
            jTextField5.setText(String.valueOf(endTime2 - startTime2));
            
